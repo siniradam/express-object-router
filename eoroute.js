@@ -1,9 +1,15 @@
 class eoroute{
-    constructor(server, routemap){
+    constructor(express, server, routemap, middleware){
+        this.express = express;
         this.server = server;
         this.routemap = routemap;
-        this.lastProcessed = "/"
+        this.lastProcessed = "/";
 
+        if(typeof middleware == "function"){
+            this.middleware = middleware
+        }
+
+        this.routeStaticFiles()
         this.routemapControl()
 
         this.http = {
@@ -58,6 +64,10 @@ class eoroute{
 
         }
 
+        if(this.middleware){
+            this.server.use(this.middleware)
+        }
+
         //Set Route
         this.server.get("/", this.routemap.pages.homepage)
         this.server.get(/.*/, this.http.route)//Handle Get Requests
@@ -67,6 +77,16 @@ class eoroute{
             this.routemap.defaults.headers(req,res);
             res.status(404).send("404")
         })
+    }
+
+
+    routeStaticFiles(){
+
+        if(this.routemap && this.routemap.publicFolder){
+            if(typeof this.routemap.publicFolder=="string" && this.routemap.publicFolder.length>0){
+                this.server.use(this.express.static(this.routemap.publicFolder))
+            }
+        }
     }
 
 

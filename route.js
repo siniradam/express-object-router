@@ -45,7 +45,10 @@ module.exports = {
             }
             
         }
-    }
+    },
+
+
+    publicFolder:"public"
 }
 
 let pageLinks = () => {//Demo Content

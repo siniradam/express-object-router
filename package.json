@@ -1,6 +1,6 @@
 {
   "name": "eoroute",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Object Router For Express",
   "main": "index.js",
   "scripts": {
