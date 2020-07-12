@@ -17,8 +17,8 @@ Reading browsing tree (route) object and serving pages.
 
 
 # Sample
-Using EORoute fairly simple just creat express instance and parse as parameter.
-```
+Using EORoute fairly simple just create an express instance and pass as parameter.
+```javascript
 const express = require('express');
 const server = express();
 const routeMap = require("./route.js")
@@ -43,7 +43,7 @@ server.listen(port, () => console.log(`Express Server running on http://localhos
 
 # Creating a route file
 
-```
+```javascript
 module.exports = {
 
     defaults:{
